@@ -3,14 +3,15 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import joblib
 import numpy as np
+import os
 
 # 🎯 Initialize the FastAPI app
 app = FastAPI()
 
-# 🔓 Allow CORS for frontend (e.g., React)
+# 🔓 Allow CORS for frontend (e.g., React on Vercel)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Set this to your frontend URL in production
+    allow_origins=["*"],  # 🔐 In production, replace with your frontend URL
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -22,8 +23,9 @@ class IrisFeatures(BaseModel):
     petal_length: float
     petal_width: float
 
-# 🧠 Load the pretrained model
-model = joblib.load("D:/Iris-classifier/backend/model/iris_model.pkl")
+# 🧠 Load the pretrained model (cross-platform path)
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "model", "iris_model.pkl")
+model = joblib.load(MODEL_PATH)
 target_names = ['setosa', 'versicolor', 'virginica']
 
 # 🔮 Predict endpoint
