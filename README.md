@@ -15,7 +15,7 @@ Built with **React + Vite + Tailwind CSS** (frontend) and **FastAPI + scikit-lea
 
 ## 🧠 Model Info
 
-This project uses a **Logistic Regression** model trained on the classic [Iris dataset](https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html) to classify iris flowers into:
+This project uses a **Random Forest** model trained on the classic [Iris dataset](https://scikit-learn.org/stable/auto_examples/datasets/plot_iris_dataset.html) to classify iris flowers into:
 - *Setosa*
 - *Versicolor*
 - *Virginica*
