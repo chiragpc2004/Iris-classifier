@@ -1,17 +1,11 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Form from './components/Form';
 
 function App() {
-  const [count, setCount] = useState(0)
   return (
-  <div className="min-h-screen bg-blue-500 flex items-center justify-center">
-    <h1 className="text-3xl font-bold text-white">Tailwind v4 is working 🎉</h1>
-  </div>
-);
-
-  
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+      <Form />
+    </div>
+  );
 }
 
-export default App
+export default App;
