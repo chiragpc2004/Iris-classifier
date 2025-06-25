@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Flower2, Github, Linkedin, Globe } from "lucide-react";
+import { Flower2, Github, Linkedin, Globe, Loader2 } from "lucide-react";
 
 export default function IrisForm() {
   const [form, setForm] = useState({
@@ -13,6 +13,7 @@ export default function IrisForm() {
 
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,6 +21,7 @@ export default function IrisForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await fetch("https://iris-9c9f.onrender.com/predict", {
         method: "POST",
@@ -32,6 +34,8 @@ export default function IrisForm() {
     } catch (err) {
       setError("🌧️ Oops! Backend not responding.");
       setResult(null);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -48,7 +52,7 @@ export default function IrisForm() {
         <Github size={18} />
       </a>
 
-      <h1 className="text-3xl font-extrabold text-center text-indigo-700 mb-4 tracking-tight">
+      <h1 className="text-3xl font-extrabold text-center text-indigo-700 mb-6 tracking-tight">
         🌸 Iris Flower Classifier
       </h1>
 
@@ -68,22 +72,36 @@ export default function IrisForm() {
         ))}
         <button
           type="submit"
-          className="w-full flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 rounded-xl font-semibold shadow-md transition-all"
+          disabled={isLoading}
+          className={`w-full flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 rounded-xl font-semibold shadow-md transition-all ${
+            isLoading ? "opacity-70 cursor-not-allowed" : ""
+          }`}
         >
-          <Flower2 size={18} /> Predict
+          {isLoading ? (
+            <>
+              <Loader2 className="animate-spin" size={18} /> Predicting...
+            </>
+          ) : (
+            <>
+              <Flower2 size={18} /> Predict
+            </>
+          )}
         </button>
       </form>
 
-      {result && (
-        <p className="text-center text-green-600 text-lg font-medium mt-4 animate-bounce">
-          🌷 It's likely a <span className="font-bold">{result}</span>!
-        </p>
-      )}
+      {/* Result or Error */}
+      <div className="mt-6">
+        {result && !isLoading && (
+          <div className="text-center text-indigo-800 bg-indigo-50 border border-indigo-200 rounded-xl p-4 shadow-inner font-medium">
+            🌷 It's likely a <span className="font-bold">{result}</span>.
+          </div>
+        )}
+        {error && !isLoading && (
+          <p className="text-center text-red-500 font-medium mt-2">{error}</p>
+        )}
+      </div>
 
-      {error && (
-        <p className="text-center text-red-500 font-medium mt-4">{error}</p>
-      )}
-
+      {/* Footer */}
       <div className="mt-8 flex flex-col items-center gap-2 text-sm text-gray-600">
         <p>Made with 💖 by Chirag</p>
         <div className="flex gap-5">
