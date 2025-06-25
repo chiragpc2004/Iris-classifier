@@ -1,14 +1,14 @@
 "use client";
 
-import { useState } from 'react';
-import { Flower2, Github, Linkedin, Globe } from 'lucide-react';
+import { useState } from "react";
+import { Flower2, Github, Linkedin, Globe } from "lucide-react";
 
 export default function IrisForm() {
   const [form, setForm] = useState({
-    sepal_length: '',
-    sepal_width: '',
-    petal_length: '',
-    petal_width: ''
+    sepal_length: "",
+    sepal_width: "",
+    petal_length: "",
+    petal_width: "",
   });
 
   const [result, setResult] = useState(null);
@@ -36,11 +36,12 @@ export default function IrisForm() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-12 p-6 rounded-2xl shadow-2xl bg-gradient-to-br from-pink-50 to-indigo-50 dark:from-[#0d1117] dark:to-[#1f2937] text-gray-800 dark:text-white border border-indigo-200 dark:border-white/10">
-      <h1 className="text-3xl font-extrabold text-center text-indigo-700 dark:text-indigo-400 mb-4 tracking-tight">
+    <div className="max-w-lg mx-auto mt-12 p-6 rounded-3xl shadow-xl bg-gradient-to-br from-pink-100 to-indigo-100 text-gray-800 border border-indigo-200 font-[Poppins]">
+      <h1 className="text-3xl font-extrabold text-center text-indigo-700 mb-4 tracking-tight">
         🌸 Iris Flower Classifier
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-3">
+
+      <form onSubmit={handleSubmit} className="space-y-4">
         {Object.keys(form).map((key) => (
           <input
             key={key}
@@ -49,22 +50,22 @@ export default function IrisForm() {
             name={key}
             value={form[key]}
             onChange={handleChange}
-            placeholder={key.replace('_', ' ')}
+            placeholder={key.replace("_", " ")}
             required
-            className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-white/10 focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-[#0d1117]"
+            className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 bg-white placeholder:text-gray-500 shadow-sm transition"
           />
         ))}
         <button
           type="submit"
-          className="w-full flex items-center justify-center gap-2 bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 text-white py-2 rounded-lg font-semibold transition-all"
+          className="w-full flex items-center justify-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white py-2.5 rounded-xl font-semibold shadow-md transition-all"
         >
           <Flower2 size={18} /> Predict
         </button>
       </form>
 
       {result && (
-        <p className="text-center text-green-600 dark:text-green-400 text-lg font-medium mt-4 animate-pulse">
-          🎉 It's likely a <span className="font-bold">{result}</span>!
+        <p className="text-center text-green-600 text-lg font-medium mt-4 animate-bounce">
+          🌷 It's likely a <span className="font-bold">{result}</span>!
         </p>
       )}
 
@@ -72,16 +73,31 @@ export default function IrisForm() {
         <p className="text-center text-red-500 font-medium mt-4">{error}</p>
       )}
 
-      <div className="mt-6 flex flex-col items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+      <div className="mt-8 flex flex-col items-center gap-2 text-sm text-gray-600">
         <p>Made with 💖 by Chirag</p>
-        <div className="flex gap-4">
-          <a href="https://github.com/chiragpc2004" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600">
+        <div className="flex gap-5">
+          <a
+            href="https://github.com/chiragpc2004"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-600 transition"
+          >
             <Github size={18} />
           </a>
-          <a href="https://linkedin.com/in/chiragpc2004" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600">
+          <a
+            href="https://linkedin.com/in/chiragpc2004"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-600 transition"
+          >
             <Linkedin size={18} />
           </a>
-          <a href="https://chiragpc-portfolio.vercel.app/" target="_blank" rel="noopener noreferrer" className="hover:text-indigo-600">
+          <a
+            href="https://chiragpc-portfolio.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-indigo-600 transition"
+          >
             <Globe size={18} />
           </a>
         </div>
