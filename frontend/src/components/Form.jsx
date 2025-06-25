@@ -36,7 +36,18 @@ export default function IrisForm() {
   };
 
   return (
-    <div className="max-w-lg mx-auto mt-12 p-6 rounded-3xl shadow-xl bg-gradient-to-br from-pink-100 to-indigo-100 text-gray-800 border border-indigo-200 font-[Poppins]">
+    <div className="relative max-w-lg mx-auto mt-12 p-6 rounded-3xl shadow-xl bg-gradient-to-br from-pink-100 to-indigo-100 text-gray-800 border border-indigo-200 font-[Poppins]">
+      {/* GitHub Repo Button */}
+      <a
+        href="https://github.com/chiragpc2004/Iris-classifier"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute top-4 right-4 bg-white border border-gray-300 shadow-sm rounded-full p-2 hover:bg-indigo-100 hover:text-indigo-700 transition-all"
+        title="View Code on GitHub"
+      >
+        <Github size={18} />
+      </a>
+
       <h1 className="text-3xl font-extrabold text-center text-indigo-700 mb-4 tracking-tight">
         🌸 Iris Flower Classifier
       </h1>
